@@ -1,0 +1,15 @@
+package pl.otros.logview.formatter.record;
+
+import pl.otros.logview.api.pluginable.MessageFormatter;
+
+public class JavaRecordMessageFormatter implements MessageFormatter {
+    @Override
+    public boolean formattingNeeded(String message) {
+        return false;
+    }
+
+    @Override
+    public String format(String message) {
+        return "";
+    }
+}
