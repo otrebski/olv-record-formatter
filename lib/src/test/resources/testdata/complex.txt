@@ -1,0 +1,1 @@
+ComplexRecord[simpleRecord=SimpleRecord[name=name], SimpleRecord2=SimpleRecord2[name=name, b=false, number=3, number2=-3.0], simpleRecords=[Lpl.otros.logview.Generator$SimpleRecord;@685f4c2e]

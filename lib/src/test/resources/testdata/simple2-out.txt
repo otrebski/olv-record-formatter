@@ -1,0 +1,6 @@
+SimpleRecord2[
+  name=name,
+  b=false,
+  number=3,
+  number2=-3.0
+]

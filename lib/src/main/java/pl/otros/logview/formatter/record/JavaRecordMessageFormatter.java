@@ -10,6 +10,7 @@ public class JavaRecordMessageFormatter implements MessageFormatter {
 
     @Override
     public String format(String message) {
-        return "";
+        //TODO format message
+        return message;
     }
 }
