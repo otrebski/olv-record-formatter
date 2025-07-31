@@ -11,6 +11,7 @@ public class JavaRecordMessageFormatter implements MessageFormatter {
     @Override
     public String format(String message) {
         //TODO format message
+
         return message;
     }
 }
