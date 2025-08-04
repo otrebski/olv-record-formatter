@@ -1,5 +1,7 @@
 ComplexRecord[
-  simpleRecord=SimpleRecord[name=name],
+  simpleRecord=SimpleRecord[
+    name=name
+  ],
   SimpleRecord2=SimpleRecord2[
     name=name,
     b=false,
@@ -7,5 +9,4 @@ ComplexRecord[
     number2=-3.0
   ],
   simpleRecords=null
-  ]
 ]
