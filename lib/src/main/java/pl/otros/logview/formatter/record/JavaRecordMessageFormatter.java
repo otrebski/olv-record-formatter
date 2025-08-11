@@ -2,6 +2,10 @@ package pl.otros.logview.formatter.record;
 
 import pl.otros.logview.api.pluginable.MessageFormatter;
 
+import static pl.otros.logview.formatter.record.parser.Parser.parse;
+import static pl.otros.logview.formatter.record.printer.PrettyPrinter.print;
+
+
 public class JavaRecordMessageFormatter implements MessageFormatter {
     @Override
     public boolean formattingNeeded(String message) {
@@ -13,8 +17,11 @@ public class JavaRecordMessageFormatter implements MessageFormatter {
 
     @Override
     public String format(String message) {
-        //TODO format message
+        if (message == null) {return null;}
+//        if (!formattingNeeded(message)) {return message;}
 
-        return message;
+        var ast = parse(message);
+        return print(ast);
+
     }
 }
