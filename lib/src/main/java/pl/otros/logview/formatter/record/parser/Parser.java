@@ -9,7 +9,7 @@ public final class Parser {
     private Parser() {}
 
     private static final Pattern ARRAY_TO_STRING =
-            Pattern.compile("^\\[L[^;]+;@[0-9a-fA-F]+]$");
+            Pattern.compile("^\\[(?:L[^;]+;|[BCDFIJSZ])@[0-9a-fA-F]+$");
 
     public static List<String> splitTopLevel(String s) {
         List<String> parts = new ArrayList<>();
