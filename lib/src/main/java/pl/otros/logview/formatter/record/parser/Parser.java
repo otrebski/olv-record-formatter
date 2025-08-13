@@ -13,16 +13,19 @@ public final class Parser {
 
     public static List<String> splitTopLevel(String s) {
         List<String> parts = new ArrayList<>();
-        int depth = 0;
+        int depthSq = 0;
+        int depthCurly = 0;
         int start = 0;
 
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             switch (c) {
-                case '[' -> depth++;
-                case ']' -> depth--;
+                case '[' -> depthSq++;
+                case ']' -> depthSq--;
+                case '{' -> depthCurly++;
+                case '}' -> depthCurly--;
                 case ',' -> {
-                    if (depth == 0) {
+                    if (depthSq == 0 && depthCurly == 0) {
                         parts.add(s.substring(start,i).trim());
                         start = i + 1;
                     }
@@ -39,6 +42,19 @@ public final class Parser {
 
         if (ARRAY_TO_STRING.matcher(text).matches()) {
             return new ValueNode("null");
+        }
+
+        if (text.startsWith("{") && text.endsWith("}")) {
+            String inside = text.substring(1, text.length() -1);
+            List<MapEntry> entries = splitTopLevel(inside).stream().map(p -> {
+                int eq = p.indexOf('=');
+                if (eq < 0) throw new IllegalArgumentException("invalid key: " + p);
+                String key = p.substring(0, eq).trim();
+                Node val = parse(p.substring(eq+1));
+                return new MapEntry(key, val);
+            })
+                    .toList();
+            return new MapNode(entries);
         }
 
         int open = text.indexOf('[');

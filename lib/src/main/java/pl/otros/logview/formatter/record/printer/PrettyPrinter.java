@@ -44,6 +44,19 @@ public final class PrettyPrinter {
             return sb.toString();
         }
 
+        if (n instanceof MapNode(java.util.List<MapEntry> entries)) {
+            if (entries.isEmpty()) return "{}";
+            StringBuilder sb = new StringBuilder();
+            sb.append("{").append(NL);
+            for (int i = 0; i < entries.size(); i++) {
+                var e = entries.get(i);
+                sb.append(indent(d + 1)).append(e.key()).append("=").append(print(e.value(), d + 1).trim());
+                if (i < entries.size() - 1) sb.append(",").append(NL);
+            }
+            sb.append(NL).append(indent(d)).append("}");
+            return sb.toString();
+        }
+
         if (n instanceof ValueNode(String raw)) {
             return raw;
         }
