@@ -50,4 +50,29 @@ public class ParserTest {
         assertTrue(n instanceof ValueNode);
         assertEquals(((ValueNode) n).raw(), "null");
     }
+
+    @Test
+    public void parsesMapLiteral() {
+        //given
+        String input = "{k1=v1,k2=v2}";
+
+        //when
+        Node n = Parser.parse(input);
+
+        //then
+        assertTrue(n instanceof MapNode);
+        var m = (MapNode) n;
+
+        assertEquals(m.entries().size(), 2);
+
+        var e1 = m.entries().getFirst();
+        assertEquals(e1.key(), "k1");
+        assertTrue(e1.value() instanceof ValueNode);
+        assertEquals(((ValueNode) e1.value()).raw(), "v1");
+
+        var e2 = m.entries().get(1);
+        assertEquals(e2.key(), "k2");
+        assertTrue(e2.value() instanceof ValueNode);
+        assertEquals(((ValueNode) e2.value()).raw(), "v2");
+    }
 }

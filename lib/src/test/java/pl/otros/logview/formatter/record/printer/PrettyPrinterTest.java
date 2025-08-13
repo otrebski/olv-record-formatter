@@ -16,4 +16,25 @@ public class PrettyPrinterTest {
                 "]";
         assertEquals(PrettyPrinter.print(ast), expected);
     }
+
+    @Test
+    public void printsMapMultiline() {
+        //given
+        Node n = new MapNode(java.util.List.of(
+                new MapEntry("k1", new ValueNode("v1")),
+                new MapEntry("k2", new ValueNode("v2"))
+        ));
+        String nl = System.lineSeparator();
+
+        String expected = "{" + nl +
+                          "  k1=v1," + nl +
+                          "  k2=v2" + nl +
+                           "}";
+
+        //when
+        String out = PrettyPrinter.print(n);
+
+        //then
+        assertEquals(out, expected);
+    }
 }
