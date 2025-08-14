@@ -8,13 +8,20 @@ import static org.testng.Assert.assertEquals;
 public class PrettyPrinterTest {
     @Test
     public void printsSimpleRecord() {
+        //given
         var ast = new RecordNode("SimpleRecord",
                 java.util.List.of(new RecordField("name", new ValueNode("name"))));
         String nl = System.lineSeparator();
+
         String expected = "SimpleRecord[" + nl +
                 "  name=name" + nl +
                 "]";
-        assertEquals(PrettyPrinter.print(ast), expected);
+
+        //when
+        String out = PrettyPrinter.print(ast);
+
+        //then
+        assertEquals(out, expected);
     }
 
     @Test
